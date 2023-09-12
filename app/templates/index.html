@@ -1,0 +1,70 @@
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+</head>
+<body>
+    <header>
+        <h1> {{ title }}</h1>
+    </header>
+    <center>
+        <form id ="search_form " action="/search">
+            <input
+            type="search"
+            placeholder="keyword"
+            id="search_input"
+            name="q"
+            />
+            <button type="submit">검색</button>
+
+        </form>
+    </center>
+    </header>
+    <main>
+        {% if books %}
+        <!--  -->
+        <center>
+          <h3 style="color: gray">{{books|length}}개 데이터 수집..</h3>
+        </center>
+        <section>
+          {% for book in books %}
+          <div>
+            <img src="{{book.image}}" width="130px" height="200px"  
+            style="
+            margin-left: 5px;
+            margin-right: 5px;"/>
+            <p>
+              {% if book.publisher|length > 10 %}
+              <!--  -->
+              {{book.publisher[:10]}}...
+              <!--  -->
+              {% else %} {{book.publisher}}
+              {% endif %}
+            </p>{% if book.discount|length > 1 %}
+            <p>{{book.discount}} 원</p>
+            {% else %} 
+            <p>{{book.price}} 원</p>
+            
+            {% endif %}
+          </div>
+          {% endfor %}
+        </section>
+  
+        <hr />어디가 시작인가
+        {{books}}
+        <b><b><b><b></b>
+        여긴가
+        {{book}}
+        <b><b><b><b></b>
+        이곳인가?
+        {{book_model}}
+        <b><b><b><b></b>
+
+        <!--  -->
+        {% else %}
+        <center><h3 style="color: gray">Please Input Keyword...</h3></center>
+        {% endif %}
+      </main>
+        
+</body>
+</html>
