@@ -1,6 +1,6 @@
 import os
 import time
-from typing import Annotated
+# from typing import Annotated
 from fastapi import FastAPI, Request, File, UploadFile, Form, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
@@ -18,8 +18,8 @@ from starlette.requests import Request
 import io
 import cv2
 import pytesseract
-import re
-from pydantic import BaseModel
+# import re
+# from pydantic import BaseModel
 import shutil
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -47,8 +47,8 @@ os.makedirs(upload_dir, exist_ok=True)
 app = FastAPI()
 
 
-class ImageType(BaseModel):
-    url: str
+# class ImageType(BaseModel):
+#    url: str
 
 
 @app.get("/upload", response_class=HTMLResponse)
@@ -252,32 +252,32 @@ async def upload_photo(file: UploadFile):
     return {"filename": filename}
 
 
-@app.post("/files/")
-async def create_file(file: Annotated[bytes, File()]):
-    return {"file_size": len(file)}
+# @app.post("/files/")
+# async def create_file(file: Annotated[bytes, File()]):
+#     return {"file_size": len(file)}
 
 
-@app.post("/uploadfiles/")
-async def create_upload_files(files: list[UploadFile]):
-    contents = await myfile.read()
-    return {"filenames": [file.filename for file in files]}
+# @app.post("/uploadfiles/")
+# async def create_upload_files(files: list[UploadFile]):
+#     contents = await myfile.read()
+#     return {"filenames": [file.filename for file in files]}
 
 
-@app.get("/file")
-async def main():
-    content = """
-        <body>
-        <form action="/files/" enctype="multipart/form-data" method="post">
-        <input name="files" type="file" multiple>
-        <input type="submit">
-        </form>
-        <form action="/uploadfiles/" enctype="multipart/form-data" method="post">
-        <input name="files" type="file" multiple>
-        <input type="submit">
-        </form>
-        </body>
-    """
-    return HTMLResponse(content=content)
+# @app.get("/file")
+# async def main():
+#     content = """
+#         <body>
+#         <form action="/files/" enctype="multipart/form-data" method="post">
+#         <input name="files" type="file" multiple>
+#         <input type="submit">
+#         </form>
+#         <form action="/uploadfiles/" enctype="multipart/form-data" method="post">
+#         <input name="files" type="file" multiple>
+#         <input type="submit">
+#         </form>
+#         </body>
+#     """
+#     return HTMLResponse(content=content)
 
 
 # @app.get("/items/{id}", response_class=HTMLResponse)
